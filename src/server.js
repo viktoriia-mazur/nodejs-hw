@@ -7,24 +7,24 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
-// app.use(
-//   pino({
-//     level: 'info',
-//     transport: {
-//       target: 'pino-pretty',
-//       options: {
-//         colorize: true,
-//         translateTime: 'HH:MM:ss',
-//         ignore: 'pid,hostname',
-//         messageFormat:
-//           '{req.method} {req.url} {res.statusCode} - {responseTime}ms',
-//         hideObject: true,
-//       },
-//     },
-//   }),
-// );
+app.use(
+  pino({
+    level: 'info',
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        colorize: true,
+        translateTime: 'HH:MM:ss',
+        ignore: 'pid,hostname',
+        messageFormat:
+          '{req.method} {req.url} {res.statusCode} - {responseTime}ms',
+        hideObject: true,
+      },
+    },
+  }),
+);
 
-const PORT = Number(process.env.PORT) || 3500;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Логування часу
 app.use((req, res, next) => {
